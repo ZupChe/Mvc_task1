@@ -1,0 +1,36 @@
+﻿@using Mvc_task1.Models
+@model Mvc_task1.Models.Automobil
+@{
+
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@if (TempData["Marka"] != null)
+{
+    <p class="alert alert-success">Uspešno ste dodali oglas: @TempData["Marka"]</p>
+}
+
+@if (TempData["Izmeni"] != null)
+{
+    <p class="alert alert-success">Uspešno ste izmenili oglas: @TempData["Izmeni"]</p>
+}
+
+@if (TempData["Obrisano"] != null)
+{
+    <p class="alert alert-success">Uspešno ste obrisali oglas: @TempData["Obrisano"]</p>
+}
+
+
+
+@Html.Partial("_AutoList")
+
+
+@*@section SideBar {
+        <li><a href="#">ZupChe</a></li>
+
+
+    }*@
+
+

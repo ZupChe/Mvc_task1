@@ -1,0 +1,103 @@
+﻿@using Mvc_task1.Models
+@model Mvc_task1.Models.Automobil
+@{
+
+    ViewBag.Title = string.Format("Prikaz oglasa {0} {1}",Model.Marka, Model.Model);
+    var isedit = Model != null;
+    var imgPath = string.IsNullOrEmpty(Model.Foto) ? "~/images/autodefault.jpeg" : Model.Foto;
+}
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Prikaz oglasa:
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@Url.Content(imgPath)" width="300" alt="" />
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Marka):
+                    <b>@Model.Marka</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Model):
+                    <b>@Model.Model</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Godiste):
+                    <b>@Model.Godiste</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ZapreminaMotora):
+                    <b>@Model.ZapreminaMotora</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Snaga):
+                    <b>@Model.Snaga</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Gorivo):
+                    <b>@Model.Gorivo</b>
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Karoserija):
+                    <b>@Model.Karoserija</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Opis):
+                    <b>@Model.Opis</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Cena):
+                    <b>@Model.Cena</b>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Kontakt):
+                    <b>@Model.Kontakt</b>
+                </div>
+
+
+            </div>
+
+
+           
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+

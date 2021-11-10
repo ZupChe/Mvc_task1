@@ -1,0 +1,29 @@
+﻿@using Mvc_task1.Models
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Oglasi:
+    </div>
+    <div class="panel-body">
+        @if (Oglasavanje.GetOglas().Count == 0)
+        {
+            <p> Trenuto nema unetih oglasa. Dodaj oglas!</p>
+        }
+        else
+        {
+            int counter = 0;
+
+            <table class="table table-condensed table-hover">
+                @foreach (Automobil automobil in Oglasavanje.GetOglas())
+                {
+                    counter++;
+                    <tr><td>@automobil.Id</td><td>@Html.ActionLink(String.Format("{0} {1}", automobil.Marka, automobil.Model), "detail","home", new {Id = automobil.Id})
+                    </td><td><a href="~/home/update?Id=@automobil.Id">Izmeni</a></td><td>@Html.ActionLink("Obriši", "delete", "home", new {Id = automobil.Id})</td></tr>
+                }
+
+
+
+            </table>
+        }
+    </div>
+</div>
