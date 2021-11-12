@@ -51,7 +51,10 @@ namespace Mvc_task1
             }
 
             app.UseStaticFiles();
-            
+
+            app.UseAuthentication();
+
+
 
             app.UseMvc(routes =>
             {

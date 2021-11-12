@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mvc_task1.Controllers
 {
@@ -52,7 +53,7 @@ namespace Mvc_task1.Controllers
             Automobil model = Oglasavanje.GetAutomobil(Id);
             return View("Detalji", model);
         }
-
+        [Authorize]
         [Route("~/home/delete/{Id}")]
         public IActionResult Delete(int Id)
         {
@@ -62,7 +63,7 @@ namespace Mvc_task1.Controllers
         }
 
 
-
+        
         [HttpPost]
         public IActionResult Index(Automobil automobil)
         {

@@ -15,6 +15,10 @@
 </head>
 
 <body>
+
+    @Html.Partial("/Views/_LoginPartial.cshtml")
+
+
     <header class="page-header">
         <h1 class="text-primary text-center">Dobrodošli na internet stranicu za oglašavanje automobila</h1>
     </header>
@@ -54,4 +58,5 @@
     </footer>
 </body>
 </html>
+@RenderSection("Scripts", false)
 
