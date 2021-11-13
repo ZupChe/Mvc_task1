@@ -1,5 +1,7 @@
 ﻿@using Mvc_task1.Models
+@using Microsoft.Extensions.Localization
 @model Mvc_task1.Models.Automobil
+@inject IStringLocalizer<Resource> localizer
 @{
 
     ViewBag.Title = "Novi automobil";
@@ -8,7 +10,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Dodaj oglas:
+        @localizer["AddCar"]
     </div>
     <div class="panel-body">
         @using (Html.BeginForm(isedit ? "Update" : "Index", "Home", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data"}))
@@ -20,7 +22,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Marka)
-                @Html.TextBoxFor(m => m.Marka, Model?.Marka, new { @class = "form-control", placeholder = "Marka" })
+                @Html.TextBoxFor(m => m.Marka, Model?.Marka, new { @class = "form-control", placeholder = @localizer["CarMark"] })
                 @Html.ValidationMessageFor(m => m.Marka, null, new { @class = "text-danger" })
             </div>
 
@@ -35,61 +37,61 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Model)
-                @Html.TextBoxFor(m => m.Model, Model?.Model, new { @class = "form-control", placeholder = "Model" })
+                @Html.TextBoxFor(m => m.Model, Model?.Model, new { @class = "form-control", placeholder = @localizer["CarModel"] })
                 @Html.ValidationMessageFor(m => m.Model, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Godiste)
-                @Html.TextBoxFor(m => m.Godiste, Model?.Godiste.ToString(), new { @class = "form-control", placeholder = "Godina proizvodnje" })
+                @Html.TextBoxFor(m => m.Godiste, Model?.Godiste.ToString(), new { @class = "form-control", placeholder = @localizer["CarYear"] })
                 @Html.ValidationMessageFor(m => m.Godiste, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.ZapreminaMotora)
-                @Html.TextBoxFor(m => m.ZapreminaMotora, Model?.ZapreminaMotora.ToString(), new { @class = "form-control", placeholder = "Zapremina motora" })
+                @Html.TextBoxFor(m => m.ZapreminaMotora, Model?.ZapreminaMotora.ToString(), new { @class = "form-control", placeholder = @localizer["EngineCapacity"] })
                 @Html.ValidationMessageFor(m => m.ZapreminaMotora, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Snaga)
-                @Html.TextBoxFor(m => m.Snaga, Model?.Snaga.ToString(), new { @class = "form-control", placeholder = "Snaga" })
+                @Html.TextBoxFor(m => m.Snaga, Model?.Snaga.ToString(), new { @class = "form-control", placeholder = @localizer["Horsepower"] })
                 @Html.ValidationMessageFor(m => m.Snaga, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Gorivo)
-                @Html.TextBoxFor(m => m.Gorivo, Model?.Gorivo, new { @class = "form-control", placeholder = "Gorivo" })
+                @Html.TextBoxFor(m => m.Gorivo, Model?.Gorivo, new { @class = "form-control", placeholder = @localizer["CarFuel"] })
                 @Html.ValidationMessageFor(m => m.Gorivo, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Karoserija)
-                @Html.TextBoxFor(m => m.Karoserija, Model?.Karoserija, new { @class = "form-control", placeholder = "Karoserija" })
+                @Html.TextBoxFor(m => m.Karoserija, Model?.Karoserija, new { @class = "form-control", placeholder = @localizer["CarBody"] })
                 @Html.ValidationMessageFor(m => m.Karoserija, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Opis)
-                @Html.TextBoxFor(m => m.Opis, Model?.Opis, new { @class = "form-control", placeholder = "Opis" })
+                @Html.TextBoxFor(m => m.Opis, Model?.Opis, new { @class = "form-control", placeholder = @localizer["CarDetails"] })
                 @Html.ValidationMessageFor(m => m.Opis, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Cena)
-                @Html.TextBoxFor(m => m.Cena, Model?.Cena.ToString(), new { @class = "form-control", placeholder = "Cena" })
+                @Html.TextBoxFor(m => m.Cena, Model?.Cena.ToString(), new { @class = "form-control", placeholder = @localizer["CarPrice"] })
                 @Html.ValidationMessageFor(m => m.Cena, null, new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Kontakt)
-                @Html.TextBoxFor(m => m.Kontakt, Model?.Kontakt, new { @class = "form-control", placeholder = "Kontakt" })
+                @Html.TextBoxFor(m => m.Kontakt, Model?.Kontakt, new { @class = "form-control", placeholder = @localizer["SalerContact"] })
                 @Html.ValidationMessageFor(m => m.Kontakt, null, new { @class = "text-danger" })
             </div>
 
 
 
 
-            <button class="btn btn-default" type="submit">@(isedit ? "Izmeni" : "Dodaj")</button>
+            <button class="btn btn-default" type="submit">@(isedit ? @localizer["AdUpdate"] : @localizer["AddButton"])</button>
         }
     </div>
 </div>

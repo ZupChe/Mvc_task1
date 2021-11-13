@@ -7,22 +7,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
 
 namespace Mvc_task1.Controllers
 {
     public class HomeController : Controller
     {
+        public IStringLocalizer<Resource> localizer;
         private readonly IHostingEnvironment _env;
 
-        public HomeController(IHostingEnvironment env)
+        public HomeController(IHostingEnvironment env,IStringLocalizer<Resource> localizer)
         {
             _env = env;
+            this.localizer = localizer;
+        }
+
+        public IActionResult SetCulture(string culture, string sourceUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName, 
+                CookieRequestCultureProvider.MakeCookieValue(
+                    new RequestCulture(culture)
+                    ),
+                new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1)
+                }
+                );
+
+            return Redirect(sourceUrl);
         }
 
         //GET : Home
         public IActionResult Index()
         {
-            return View();
+           return View();
         }
 
         public IActionResult ONama()

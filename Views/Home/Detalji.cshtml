@@ -1,5 +1,7 @@
 ﻿@using Mvc_task1.Models
+@using Microsoft.Extensions.Localization
 @model Mvc_task1.Models.Automobil
+@inject IStringLocalizer<Resource> localizer
 @{
 
     ViewBag.Title = string.Format("Prikaz oglasa {0} {1}",Model.Marka, Model.Model);
@@ -11,7 +13,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Prikaz oglasa:
+        @localizer["SingleAd"]
     </div>
     <div class="panel-body">
 

@@ -1,20 +1,20 @@
 ﻿@using Mvc_task1.Models
-
+@using Microsoft.Extensions.Localization
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+@inject IStringLocalizer<Resource> localizer
 
 
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Oglasi:
+            @localizer["AdInfo"]
         </div>
         <div class="panel-body">
             @if (Oglasavanje.GetOglas().Count == 0)
             {
-                <p> Trenuto nema unetih oglasa. Dodaj oglas!</p>
+                <p>@localizer["NoAd"]</p>
             }
             else
             {
@@ -30,10 +30,10 @@
                             @Html.ActionLink(String.Format("{0} {1}", automobil.Marka, automobil.Model), "detail", "home", new { Id = automobil.Id })
                         </td>
 
-                        <td><a href="~/home/update?Id=@automobil.Id">Izmeni</a></td>
+                        <td><a href="~/home/update?Id=@automobil.Id">@localizer["AdUpdate"]</a></td>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <td>@Html.ActionLink("Obriši", "delete", "home", new { Id = automobil.Id })</td>
+                            <td>@Html.ActionLink(localizer["AdDelete"], "delete", "home", new { Id = automobil.Id })</td>
                         }
 
                     </tr>

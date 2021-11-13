@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    @using Microsoft.Extensions.Localization
+    @inject IStringLocalizer<Resource> localizer
+}
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -15,12 +21,17 @@
 </head>
 
 <body>
+    <ul class="list-inline col-md-2">
+        <li>@Html.ActionLink("en","SetCulture","Home",new { culture="en", sourceUrl = Microsoft.AspNetCore.Http.Extensions.UriHelper.GetDisplayUrl(Context.Request) })</li>
+        <li>@Html.ActionLink("de", "SetCulture", "Home", new { culture = "de-DE", sourceUrl = Microsoft.AspNetCore.Http.Extensions.UriHelper.GetDisplayUrl(Context.Request) })</li>
+        <li>@Html.ActionLink("sr", "SetCulture", "Home", new { culture = "sr", sourceUrl = Microsoft.AspNetCore.Http.Extensions.UriHelper.GetDisplayUrl(Context.Request) })</li>
+    </ul>
 
     @Html.Partial("/Views/_LoginPartial.cshtml")
 
 
     <header class="page-header">
-        <h1 class="text-primary text-center">Dobrodošli na internet stranicu za oglašavanje automobila</h1>
+        <h1 class="text-primary text-center">@localizer["MainHeading"]</h1>
     </header>
 
     <div class="container">
@@ -31,30 +42,30 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Brzi linkovi:
+                        @localizer["SidebarText"]
                     </div>
                     <div class="panel-body">
                         <ul>
-                            <li><a href="~/">Početna</a></li>
-                            <li>@Html.ActionLink("O nama", "onama", "home")</li>
-                            <li>@Html.ActionLink("Kontakt", "kontakt", "home")</li>
-                            <li>@Html.ActionLink("Dodaj oglas", "addoglas", "home")</li>
+                            <li><a href="~/">@localizer["HomePage"]</a></li>
+                            <li>@Html.ActionLink(@localizer["AboutUs"], "onama", "home")</li>
+                            <li>@Html.ActionLink(@localizer["ContactUs"], "kontakt", "home")</li>
+                            <li>@Html.ActionLink(@localizer["AddCar"], "addoglas", "home")</li>
                             @RenderSection("SideBar", false)
                         </ul>
                     </div>
 
                 </div>
-                
+
             </div>
 
         </div>
 
     </div>
 
-   
+
 
     <footer class="row">
-        <p class="text-center">All rights reserved. <a href="http://www.autooglasi.eu/">Auto Oglasi</a> 2021</p>
+        <p class="text-center">@localizer["CopyrightLabel"] <a href="http://www.autooglasi.eu/">@localizer["CarAds"]</a> 2021</p>
     </footer>
 </body>
 </html>

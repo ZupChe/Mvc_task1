@@ -1,25 +1,30 @@
 ﻿@using Mvc_task1.Models
 @model Mvc_task1.Models.Automobil
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<Resource> localizer
+
+
 @{
 
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "HomePage";
 }
 
 
 
 @if (TempData["Marka"] != null)
 {
-    <p class="alert alert-success">Uspešno ste dodali oglas: @TempData["Marka"]</p>
+    <p class="alert alert-success">@localizer["SuccessfulInsert"]: @TempData["Marka"]</p>
 }
 
 @if (TempData["Izmeni"] != null)
 {
-    <p class="alert alert-success">Uspešno ste izmenili oglas: @TempData["Izmeni"]</p>
+<p class="alert alert-success">@localizer["UpdateAd"]: @TempData["Izmeni"]</p>
 }
 
 @if (TempData["Obrisano"] != null)
 {
-    <p class="alert alert-success">Uspešno ste obrisali oglas: @TempData["Obrisano"]</p>
+<p class="alert alert-success">@localizer["DeleteAd"]: @TempData["Obrisano"]</p>
 }
 
 

@@ -7,32 +7,50 @@ namespace Mvc_task1.Models
     public partial class Automobil
     {
         public int Id { get; set; }
-        [Display(Name = "Marka automobila")]
-        [Required(ErrorMessage = "Unesite marku automobila")]
+
+        [Display(Name = "CarMark")]
+        [Required(ErrorMessage = "CarMarkRequired")]
         public string Marka { get; set; }
-        [Display(Name = "Model automobila")]
-        [Required(ErrorMessage = "Unesite model automobila")]
+
+        [Display(Name = "CarModel")]
+        [Required(ErrorMessage = "CarModelRequired")]
         public string Model { get; set; }
-        [Display(Name = "Godina proizvodnje")]
-        [Required(ErrorMessage = "Unesite godinu proizvodnje automobila")]
+
+        [Display(Name = "CarYear")]
+        [Required(ErrorMessage = "CarYearRequired")]
         public int Godiste { get; set; }
-        [Display(Name = "Zapremina motora")]
-        [Required(ErrorMessage = "Unesite zapreminu motora")]
+
+        [Display(Name = "EngineCapacity")]
+        [Required(ErrorMessage = "EngineCapacityRequired")]
         public int ZapreminaMotora { get; set; }
-        [Required(ErrorMessage = "Unesite snagu motora")]
+
+        [Display(Name = "Horsepower")]
+        [Required(ErrorMessage = "HorsepowerRequired")]
         public int Snaga { get; set; }
-        [Required(ErrorMessage = "Unesite vrstu goriva")]
+
+        [Display(Name = "CarFuel")]
+        [Required(ErrorMessage = "FuelRequired")]
         public string Gorivo { get; set; }
-        [Required(ErrorMessage = "Unesite tip karoserije")]
+
+        [Display(Name = "CarBody")]
+        [Required(ErrorMessage = "CarBodyRequred")]
         public string Karoserija { get; set; }
-        [Display(Name = "Slika automobila")]
+
+        [Display(Name = "CarPhoto")]
         public string Foto { get; set; }
-        [Required(ErrorMessage = "Unesite dodatan opis")]
+
+        [Display(Name = "CarDetails")]
+        [Required(ErrorMessage = "CarDetailsRequired")]
         public string Opis { get; set; }
-        [Required(ErrorMessage = "Unesite cenu automobila")]
+
+        [Display(Name = "CarPrice")]
+        [Required(ErrorMessage = "CarPriceRequired")]
         public double Cena { get; set; }
-        [Required(ErrorMessage = "Unesite kontakt")]
+
+        [Display(Name = "SalerContact")]
+        [Required(ErrorMessage = "SalerContactRequired")]
         public string Kontakt { get; set; }
+
         public int? IsDeleted { get; set; }
 
         

@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,8 +36,28 @@ namespace Mvc_task1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddLocalization(opts => opts.ResourcesPath = "Resources");
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddMvc().AddDataAnnotationsLocalization(opts =>
+            {
+                opts.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(Resource));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.Configure<RequestLocalizationOptions>(
+                opts =>
+                {
+                    var supported = new[]
+                    {
+                        new CultureInfo("en"),
+                        new CultureInfo("sr"),
+                        new CultureInfo("de-DE"),
+                    };
+                    opts.DefaultRequestCulture = new RequestCulture(culture:"en",uiCulture:"en-US");
+                    opts.SupportedCultures = supported;
+                    opts.SupportedUICultures = supported;
+                }
+             );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +75,8 @@ namespace Mvc_task1
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseRequestLocalization();
 
 
 
